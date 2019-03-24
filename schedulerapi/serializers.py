@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from movierater.api.models import Movie, Rating
+from .models import *
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -12,13 +12,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-class MovieSerializer(serializers.ModelSerializer):
+class ItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Movie
-        fields = ('id', 'title', 'description', 'avg_rating', 'no_of_ratings')
+        model = Item
+        fields = ('id', 'title', 'description', 'timeNow', 'timeScheduled', 'weekly', 'yearly', 'monthly', 'daily')
 
-class RatingSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Rating
-        fields = ('stars', 'user', 'movie')

@@ -1,15 +1,11 @@
 from django.contrib import admin
-from movierater.api.models import Movie, Rating
+from .models import Item
 
-@admin.register(Movie)
-class MovieAdmin(admin.ModelAdmin):
-    fields = ('title', 'description')
-    list_display = ['title', 'description']
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    fields = ('title', 'description', 'timeScheduled', 'weekly', 'yearly', 'monthly', 'daily')
+    list_display = ['title', 'description', 'timeNow', 'timeScheduled', 'weekly', 'yearly', 'monthly', 'daily']
+    readonly_fields = ('timeNow',)
     search_fields = ('title', 'description')
 
-@admin.register(Rating)
-class RatingAdmin(admin.ModelAdmin):
-    fields = ('user', 'movie', 'stars')
-    list_display = ['user', 'movie', 'stars']
-    search_fields = ('movie',)
 

@@ -1,30 +1,20 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import datetime, timedelta
+from django.utils import timezone
 
-class Movie(models.Model):
+class Item(models.Model):
     title = models.CharField(max_length=32)
     description = models.CharField(max_length=300)
+    monthly = models.BooleanField(default=False)
+    weekly = models.BooleanField(default=False)
+    daily = models.BooleanField(default=False)
+    yearly = models.BooleanField(default=False)
+    priorty = models.IntegerField(default= 0)
+    timeNow = models.DateTimeField(auto_now_add=True)
+    timeScheduled = models.DateTimeField()
 
-    def avg_rating(self):
-        sum = 0
-        all_ratings = Rating.objects.filter(movie=self)
-        for rating in all_ratings:
-            sum += rating.stars
+    def __str__(self):
+        return  self.title
 
-        if len(all_ratings) > 0:
-            return sum / len(all_ratings)
-        else:
-            return 0
-
-    def no_of_ratings(self):
-        all_ratings = Rating.objects.filter(movie=self)
-        return len(all_ratings)
-
-class Rating(models.Model):
-    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    class Meta:
-        unique_together = (('user', 'movie'),)
-        index_together = (('user', 'movie'),)
