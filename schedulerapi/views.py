@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from .models import *
 from schedulerapi.serializers import *
 from rest_framework.decorators import list_route
+import random
+from datetime import date
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,6 +24,40 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     authentication_classes = (TokenAuthentication, SessionAuthentication)
     permission_classes = (IsAuthenticated,)
+
+class PickViewSet(viewsets.ModelViewSet):
+    queryset = Pick.objects.all()
+    serializer_class = PickSerializer
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+    permission_classes = (IsAuthenticated,)
+
+class RandomizeViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    querysetHigh = Item.objects.filter(severity='HIGH')
+    querysetMedium = Item.objects.filter(severity='MEDIUM')
+    querysetLow = Item.objects.filter(severity='LOW')
+    print(querysetHigh)
+    print(querysetMedium)
+    print(querysetLow)
+    itemTitleLow = random.choice(querysetLow)
+    print(itemTitleLow)
+    itemTitleMedium = random.choice(querysetMedium)
+    print(itemTitleMedium)
+    itemTitleHigh = random.choice(querysetHigh)
+    print(itemTitleHigh)
+
+    P = Pick(dayDate = date.today(), itemA = itemTitleHigh, itemB = itemTitleMedium, itemC = itemTitleLow)
+    print(Pick.dayDate)
+    print(Pick.itemA)
+    print(Pick.itemB)
+    print(Pick.itemC)
+    P.save()
+
+
+    serializer_class = ItemSerializer
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+    permission_classes = (IsAuthenticated,)
+
 
 
 class CustomObtainAuthToken(ObtainAuthToken):

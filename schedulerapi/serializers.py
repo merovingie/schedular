@@ -15,5 +15,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('id', 'title', 'description', 'timeNow', 'timeScheduled', 'weekly', 'yearly', 'monthly', 'daily')
+        fields = ('id', 'severity', 'title', 'description', 'timeNow', 'timeScheduled', 'weekly', 'yearly', 'monthly', 'daily')
 
+
+class PickSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pick
+        fields = ('dayDate', 'itemA', 'isDoneA', 'itemB', 'isDoneB', 'itemC', 'isDoneC')
