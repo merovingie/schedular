@@ -21,4 +21,10 @@ class ItemSerializer(serializers.ModelSerializer):
 class PickSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pick
-        fields = ('dayDate', 'itemA', 'isDoneA', 'itemB', 'isDoneB', 'itemC', 'isDoneC')
+        fields = ('id','dayDate', 'itemA', 'isDoneA', 'itemB', 'isDoneB', 'itemC', 'isDoneC')
+
+class RandomizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pick
+        fields = ('id', 'dayDate', 'itemA', 'isDoneA', 'itemB', 'isDoneB', 'itemC', 'isDoneC')
+
