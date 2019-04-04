@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'schedulerapi',
     'rest_framework.authtoken',
     'corsheaders',
-    'home'
+    'home',
+    'blog'
 ]
 
 MIDDLEWARE = [
