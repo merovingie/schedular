@@ -23,7 +23,7 @@
 <body>
         <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="{% url 'jobs' %}">Rimon Mikhael</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Rimon Mikhael</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,13 +32,7 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="{% url 'blog' %}">Recent News</a>
                     <a class="nav-item nav-link" href="{% static 'RimonMikhael Resume.docx' %}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'skills' %}">Skills</a>
                     {% if user.is_authenticated %}
-                    <!-- <a class="nav-item nav-link" href="javascript:{document.getELementById('logout').submit()}" onclick="">Logout</a> -->
-                    <!-- <form id="logout" method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <input type="hidden"/>
-                    </form> -->
                     <form class="btn btn-primary btn-outline-danger btn-sm" method="POST" action="{% url 'logout' %}" >
                         {% csrf_token %}
                         <input type="submit" value="logout">

@@ -1,0 +1,27 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+{% load static %}
+<main role="main">
+<h1 class="text-center pt-3">Welcome to my News Blog</h1>
+<br>
+<br>
+    <div class="container">
+        <h2>Latest News:</h2>
+    <hr>
+    {% for blog in blogs.all %}
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic">{{ blog.title }}</h1>
+                <p class="lead my-3">{{ blog.body | truncatewords:30 }}</p>
+                <img class="card-img-right flex-auto d-none d-lg-block" src="{{ blog.image.url }}" alt="Card image cap">
+                <p class="lead mb-0"><a href="{% url 'detail' blog.id %}" class="text-white font-weight-bold">Continue reading...</a></p>
+            </div>
+        </div>
+        <hr>    
+
+    {% endfor %}
+    </div>
+</main>
+{% endblock content %}

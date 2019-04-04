@@ -1,0 +1,25 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+{% load static %}
+<main role="main">
+<h1 class="text-center pt-3">Welcome to my News Blog</h1>
+<br>
+<br>
+    <div class="container">
+        <h2>Latest News:</h2>
+    <hr>
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic">{{ detailblog.title }}</h1>
+                <img class="card-img-right flex-auto d-none d-lg-block" src="{{ detailblog.image.url }}" alt="Card image cap">
+                <p class="lead my-3">{{ detailblog.body }}</p>    
+                
+            </div>
+        </div>
+        <hr>    
+    </div>
+    <hr>
+</main>
+{% endblock content %}
