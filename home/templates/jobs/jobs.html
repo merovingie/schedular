@@ -1,0 +1,66 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+{% load static %}
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Rimon Mikhael</h1>
+            <p class="lead text-muted">Hi My Name is Rimon, Follow ME and my Interests and
+                Projects I am working ON.. and i enjoy building SHITTTT any shit!!!lol!!!:)</p>
+            <p>
+               <p>
+                    {% if user.is_authenticated %}
+                    welcome {{ user.username }}
+                    {% else %}
+                    Welome u are not currently logged in
+                    {% endif %}
+                    
+                    
+               </p> 
+                <a href="mailto:rimonmikhael@gmail.com" class="btn btn-primary my-2">Email Me</a>
+                <a class="twitter-follow-button" href="https://twitter.com/TwitterDev" data-size="large">
+                    Follow @TwitterDev</a>
+            </p>
+            <img src="{% static '20160220_225712.jpg' %}" class="rounded-circle img-fluid"  alt="">
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                {% for job in jobs.all %}
+
+                <div class="col-md-4">
+
+                    <div class="card mb-4 shadow-sm">
+                        <h5 class="card-title">{{job.title}}</h5>
+                        <img src="{{job.image.url}}" class="card-img-top">
+                        <div class="card-body">
+                            <p class="card-text">{{job.summary}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <a type="button" href="{{job.url}}" class="btn btn-sm btn-outline-secondary">View</button></a>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+{% endblock content %}
