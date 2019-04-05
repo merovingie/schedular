@@ -62,6 +62,7 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8000',
     'localhost:4200',
     '127.0.0.1:4200',
+    'https://study-schedular-web.firebaseapp.com',
 )
 
 
